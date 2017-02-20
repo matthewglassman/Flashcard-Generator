@@ -1,6 +1,6 @@
 var inquirer = require ("inquirer");
 var fs = require ("fs");
-var basiccard = require ("./BasicCard.json");
+//var basiccard = require ("./BasicCard.json");
 var basicCardArray = [];
 
 function BasicCard(front, back){
@@ -28,17 +28,14 @@ var askQuestion = function(){
 			message: basicCardArray[cardCount].front
 		}
 		]).then(function(back){
-			back.Question;
-			if (back.Question.toLowerCase() === basicCardArray[cardCount].back.toLowercase()){
-				console.log("Excellent!" + back.Question.toLowerCase() + " is correct!");
+			var answer = back.Question;
+			if (answer.toLowerCase() === basicCardArray[cardCount].back.toLowercase()){
+				console.log("Excellent!" + answer.toLowerCase() + " is correct!");
 			}else{
 				console.log("Oh too bad" + basicCardArray[cardCount].back + "was what we were looking for");
 			}
 				cardCount++;
-				askQuestion();
-
-			
-			
+				askQuestion();	
 		});
 	}
 }
