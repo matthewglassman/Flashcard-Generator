@@ -6,39 +6,46 @@ var basicCardArray = [];
 function BasicCard(front, back){
 	this.front = front;
 	this.back = back;
-}
+};
 
 //push questions and answers to an array to compare against a users input and to know when the quiz has ended.
 
-basicCardArray.push(new BasicCard(".... was the first President of the United States?", "George Washington"), 
-	new BasicCard("The most recent Super Bowl took place in the city of ....?", "Houston"),
-	new BasicCard("2 + 2 = ....?", "Four"),
-	new BasicCard("A Lemon is typically .... in color.", "Yellow")
+basicCardArray.push(new BasicCard(".... was the first President of the United States?", "george washington"), 
+	new BasicCard("The most recent Super Bowl took place in the city of ....?", "houston"),
+	new BasicCard("2 + 2 = ....?", "four"),
+	new BasicCard("A Lemon is typically .... in color.", "yellow")
 	);
-console.log(basicCardArray);
-console.log(basicCardArray.length);
+//console.log(basicCardArray);
+//console.log(basicCardArray.length);
 
 var cardCount = 0;
 
 var askQuestion = function(){
 	if (cardCount < basicCardArray.length){
+//		console.log(cardCount);
+//		console.log(basicCardArray.length);
 		inquirer.prompt([
 		{
-			name:"Question",
+			name:"question",
 			message: basicCardArray[cardCount].front
 		}
-		]).then(function(back){
-			var answer = back.Question;
-			if (answer.toLowerCase() === basicCardArray[cardCount].back.toLowercase()){
-				console.log("Excellent!" + answer.toLowerCase() + " is correct!");
+		]).then(function(answers){
+			var useranswer = answers.question;
+			var flashcardBack = basicCardArray[cardCount].back;
+
+			if (useranswer.toLowerCase() === flashcardBack){
+				console.log("Excellent! " + useranswer.toLowerCase() + " is correct!");
+				cardCount++;
+				askQuestion();
 			}else{
-				console.log("Oh too bad" + basicCardArray[cardCount].back + "was what we were looking for");
-			}
+				console.log("Oh too bad! " + basicCardArray[cardCount].back + " was the answer we were looking for");
 				cardCount++;
 				askQuestion();	
+			}
+				
 		});
 	}
-}
+};
 askQuestion();
 // var card1 = new BasicCard (".... was the first President of the United States?", "George Washington");
 // var card2 = new BasicCard ("The most recent Super Bowl took place in ....?", "Houston");
