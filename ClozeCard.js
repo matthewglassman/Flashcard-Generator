@@ -12,7 +12,7 @@ function ClozeCard(text, cloze){
 clozeCardArray.push(new ClozeCard("George Washington was the first President of the United States?", "George Washington"), new ClozeCard("The most recent Super Bowl took place in the city of Houston?", "Houston"), new ClozeCard("2 + 2 = 4 ?", "4"), new ClozeCard("A lemon is typically yellow in color.", "yellow")
 	);
 
-console.log(clozeCardArray);
+//console.log(clozeCardArray);
 
 var askQuestion = function(){
 	if (cardCount < clozeCardArray.length){
@@ -26,11 +26,11 @@ var askQuestion = function(){
 			var flashcardCloze = clozeCardArray[cardCount].cloze;
 
 			if(useranswer.toLowerCase() === flashcardCloze.toLowerCase()){
-				console.log("Yay!");
+				console.log("Yes, " + clozeCardArray[cardCount].text);
 				cardCount++;
 				askQuestion();
 			}else{
-				console.log("Oh too bad!");
+				console.log("Oh too bad! " + clozeCardArray[cardCount].text);
 				cardCount++;
 				askQuestion();
 			}
